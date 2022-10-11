@@ -30,7 +30,13 @@ public class SongController {
 
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/create")
-    public String write(@AuthenticationPrincipal MemberContext memberContext , @Valid SongForm songForm) {
+    public String showCreate(){
+        return "song/create";
+    }
+
+    @PreAuthorize("isAuthenticated()")
+    @PostMapping("/create")
+    public String create(@AuthenticationPrincipal MemberContext memberContext , @Valid SongForm songForm) {
         Member author = memberContext.getMember();
         Song song = songService.create(author, songForm.getSubject(), songForm.getContent());
 
