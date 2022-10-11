@@ -1,7 +1,7 @@
 package com.ll.exam.springmelonpay.controller;
 
-import com.ll.exam.app.member.controller.MemberController;
-import com.ll.exam.app.member.service.MemberService;
+import com.ll.exam.springmelonpay.app.member.controller.MemberController;
+import com.ll.exam.springmelonpay.app.member.service.MemberService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

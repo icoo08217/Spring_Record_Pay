@@ -1,9 +1,9 @@
 package com.ll.exam.springmelonpay.service;
 
-import com.ll.exam.app.member.entity.Member;
-import com.ll.exam.app.member.repository.MemberRepository;
-import com.ll.exam.app.song.entity.Song;
-import com.ll.exam.app.song.service.SongService;
+import com.ll.exam.springmelonpay.app.member.entity.Member;
+import com.ll.exam.springmelonpay.app.member.repository.MemberRepository;
+import com.ll.exam.springmelonpay.app.song.entity.Song;
+import com.ll.exam.springmelonpay.app.song.service.SongService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
