@@ -1,4 +1,3 @@
-
 server:
   port: 8010
 spring:
@@ -12,7 +11,7 @@ spring:
       enabled: true
   datasource:
     url: jdbc:mariadb://127.0.0.1:3306/melon_pay_dev?useUnicode=true&characterEncoding=utf8&autoReconnect=true&serverTimezone=Asia/Seoul
-    username: bc
+    username: root
     password: rh741010!
   jpa:
     hibernate:

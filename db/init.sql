@@ -1,6 +1,5 @@
 # 테스트 DB 생성
-
-CREATE DATABASE IF EXISTS melon_pay_test:
+CREATE DATABASE IF EXISTS melon_pay_test;
 CREATE DATABASE melon_pay_test;
 USE melon_pay_test;
 
