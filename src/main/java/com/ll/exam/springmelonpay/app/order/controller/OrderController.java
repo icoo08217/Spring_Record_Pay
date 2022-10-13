@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ll.exam.springmelonpay.app.member.entity.Member;
 import com.ll.exam.springmelonpay.app.order.entity.Order;
 import com.ll.exam.springmelonpay.app.order.exception.ActorCanNotSeeOrderException;
+import com.ll.exam.springmelonpay.app.order.exception.OrderIdNotMatchedException;
 import com.ll.exam.springmelonpay.app.order.service.OrderService;
 import com.ll.exam.springmelonpay.app.security.dto.MemberContext;
 import lombok.RequiredArgsConstructor;
@@ -68,9 +69,16 @@ public class OrderController {
     private final String SECRET_KEY = "test_sk_dP9BRQmyarYOM15Jypv3J07KzLNk";
 
     @RequestMapping("/{id}/success")
-    public String confirmPayment(
-            @RequestParam String paymentKey, @RequestParam String orderId, @RequestParam Long amount,
-            Model model) throws Exception {
+    public String confirmPayment(@PathVariable long id ,@RequestParam String paymentKey,
+                                @RequestParam String orderId, @RequestParam Long amount,
+                                Model model) throws Exception {
+
+        Order order = orderService.findFromPrintById(id).get();
+        long orderIdInputed = Long.parseLong(orderId.split("__")[1]);
+
+        if (id != orderIdInputed) {
+            throw new OrderIdNotMatchedException();
+        }
 
         HttpHeaders headers = new HttpHeaders();
         // headers.setBasicAuth(SECRET_KEY, ""); // spring framework 5.2 이상 버전에서 지원
@@ -79,7 +87,7 @@ public class OrderController {
 
         Map<String, String> payloadMap = new HashMap<>();
         payloadMap.put("orderId", orderId);
-        payloadMap.put("amount", String.valueOf(amount));
+        payloadMap.put("amount", String.valueOf(order.calculatePayPrice()));
 
         HttpEntity<String> request = new HttpEntity<>(objectMapper.writeValueAsString(payloadMap), headers);
 
